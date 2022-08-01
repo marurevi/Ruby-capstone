@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Catalogue of my Things
 
-> Description the project.
+> A catalogue app in Ruby that stores information related to items that a user owns. The app uses rspec for testing and has a schema for the postgresql database that would be used to store the information.
 
 
 ## Built With
