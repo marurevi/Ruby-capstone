@@ -18,39 +18,46 @@
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+- [Install Ruby](https://www.ruby-lang.org/en/documentation/installation/) on your local machine
+- Clone [this repository](https://github.com/marurevi/Ruby-capstone/)
 
+```
+gh repo clone marurevi/Ruby-capstone/
+```
+- To get started, In the root directory run:
 
-To get a local copy up and running follow these simple example steps.
+```
+gem install bundler
+```
 
-### Prerequisites
+Then run:
 
-### Setup
+```
+bundle install
+```
 
-### Install
+Open terminal and run ruby app in the command Line:
 
-### Usage
-
-### Run tests
-
-### Deployment
-
-
-
+```
+ruby bin/main
+```
+In case you want to run test, write the following command in your terminal:
+```
+bin/rspec
+```
 ## Authors
 
-👤 **Mariana Revilla**
+👤 **Mariana Revilla Lérida**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@marurevi](https://github.com/marurevi)
+- Twitter: [@MaruRevilla](https://twitter.com/MaruRevilla)
+- LinkedIn: [Mariana-Revilla-Lérida](https://linkedin.com/in/mariana-revilla-l%C3%A9rida-a12aba143)
 
-👤 **Ada Nzeakonobi**
+👤 **Adaobi Vivian Okoye**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@githubhandle](https://github.com/adanzeakonobi) 
+- Twitter: [@twitterhandle](https://twitter.com/Adaebubemmuta)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/okoyeaadaobi)
 
 👤 **Daniel Malo**
 
