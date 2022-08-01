@@ -4,11 +4,7 @@ class App
   attr_reader :games
 
   def initialize
-    @games = [Game.new(
-      ['rpg', 'blizzard', 'some source',
-       'some label', 'multiplayer', DateTime.new(2019, 2, 15)],
-      DateTime.new(2017, 12, 25), 'the-game-id', archived: false
-    )]
+    @games = []
   end
 
   def call_input(first)
@@ -30,9 +26,10 @@ class App
   end
 
   def cases(command)
-    return unless %w[4].include? command
+    return unless %w[4 12].include? command
 
-    { '4' => -> { list_games } }[command].call
+    { '4' => -> { list_games },
+      '12' => -> { add_game } }[command].call
   end
 
   def action(first)
@@ -55,8 +52,31 @@ class App
   private
 
   def list_games
+    puts 'There are no games yet!' if @games.empty?
     @games.each.with_index do |game, i|
       puts "#{i}) [Game] The #{game.genre} game by #{game.author} was released in #{game.published_date.to_date}."
     end
+  end
+
+  def add_game
+    genre = [(print 'Genre: '), gets.rstrip][1]
+    author = [(print 'Author: '), gets.rstrip][1]
+    source = [(print 'Source: '), gets.rstrip][1]
+    label = [(print 'Label: '), gets.rstrip][1]
+    published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
+    year, month, day = published_date.split('-')
+    multiplayer = [(print 'Multiplayer: '), gets.rstrip][1]
+    last_played_at = [(print 'Last played at (yyyy-mm-dd): '), gets.rstrip][1]
+    year1, month1, day1 = last_played_at.split('-')
+    begin
+      game = Game.new([genre, author, source,
+        label, multiplayer, DateTime.new(year1.to_i, month1.to_i, day1.to_i)],
+        DateTime.new(year.to_i, month.to_i, day.to_i))
+    rescue
+      puts 'Could not create game with provided info!'
+      return
+    end
+    puts 'Game created successfully!'
+    @games << game
   end
 end
