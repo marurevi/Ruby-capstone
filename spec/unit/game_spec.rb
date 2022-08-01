@@ -4,7 +4,8 @@ describe Game do
   before(:all) do
     @game = Game.new(
       ['some genre', 'some author', 'some source',
-       'some label', 'multiplayer', DateTime.new(2021, 2, 15)], DateTime.new(2017, 12, 25), 'the-game-id', archived: false
+       'some label', 'multiplayer', DateTime.new(2021, 2, 15)],
+      DateTime.new(2017, 12, 25), 'the-game-id', archived: false
     )
   end
 

@@ -1,6 +1,6 @@
 example_id                      | status | run_time        |
 ------------------------------- | ------ | --------------- |
-./spec/unit/game_spec.rb[1:1:1] | failed | 0.01539 seconds |
-./spec/unit/item_spec.rb[1:1:1] | passed | 0.00021 seconds |
-./spec/unit/item_spec.rb[1:1:2] | passed | 0.00018 seconds |
-./spec/unit/item_spec.rb[1:1:3] | passed | 0.00074 seconds |
+./spec/unit/game_spec.rb[1:1:1] | passed | 0.02081 seconds |
+./spec/unit/item_spec.rb[1:1:1] | passed | 0.0002 seconds  |
+./spec/unit/item_spec.rb[1:1:2] | passed | 0.00027 seconds |
+./spec/unit/item_spec.rb[1:1:3] | passed | 0.00024 seconds |
