@@ -22,7 +22,7 @@ describe Game do
       expect(@game.multiplayer).to eq 'multiplayer'
       expect(@game.last_played_at.is_a?(DateTime)).to be true
     end
-    
+
     it 'should return true if published_date is older than 10 years and last played at is older than 2 years' do
       expect(@game.can_be_archived?).to be true
     end

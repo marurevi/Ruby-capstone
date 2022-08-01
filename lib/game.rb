@@ -8,4 +8,8 @@ class Game < Item
     @multiplayer = objects[4]
     @last_played_at = objects[5]
   end
+
+  def can_be_archived?
+    @published_date.to_date < Date.today - 10 && @last_played_at.to_date < Date.today - 2
+  end
 end
