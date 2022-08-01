@@ -19,10 +19,10 @@ describe Item do
       expect(@item.published_date.is_a?(DateTime)).to be true
       expect(@item.archived).to eq false
     end
-    it 'should return true if published_date is older than 10 years' do
+    it 'could be archived if published_date is older than 10 years' do
       expect(@item.could_be_archived?).to be true
     end
-    it 'should be true if published_date can move to archive' do
+    it 'should be moved to archive if can be archived' do
       expect(@item.move_to_archive).to be true
     end
   end
