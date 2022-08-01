@@ -3,7 +3,8 @@ require_relative '../../lib/item'
 describe Item do
   before(:all) do
     @item = Item.new(
-      ['some genre', 'some author', 'some source', 'some label'], '01/08/22', 'the-item-id', archived: false
+      ['some genre', 'some author', 'some source',
+       'some label'], DateTime.new(2011, 12, 25), 'the-item-id', archived: false
     )
   end
 
@@ -15,8 +16,11 @@ describe Item do
       expect(@item.author).to eq 'some author'
       expect(@item.source).to eq 'some source'
       expect(@item.label).to eq 'some label'
-      expect(@item.published_date).to eq '01/08/22'
+      expect(@item.published_date.is_a?(DateTime)).to be true
       expect(@item.archived).to eq false
+    end
+    it 'should return true if published_date is older than 10 years' do
+      expect(@item.could_be_archived?).to be true
     end
   end
 end

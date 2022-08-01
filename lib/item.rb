@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'date'
 
 class Item
   attr_reader :id, :genre, :author, :source, :label, :published_date
@@ -12,5 +13,9 @@ class Item
     @label = objects[3]
     @published_date = published_date
     @archived = archived
+  end
+
+  def could_be_archived?
+    @published_date.to_date < Date.today - 10
   end
 end
