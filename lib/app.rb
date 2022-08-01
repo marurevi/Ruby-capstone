@@ -70,9 +70,9 @@ class App
     year1, month1, day1 = last_played_at.split('-')
     begin
       game = Game.new([genre, author, source,
-        label, multiplayer, DateTime.new(year1.to_i, month1.to_i, day1.to_i)],
-        DateTime.new(year.to_i, month.to_i, day.to_i))
-    rescue
+                       label, multiplayer, DateTime.new(year1.to_i, month1.to_i, day1.to_i)],
+                      DateTime.new(year.to_i, month.to_i, day.to_i))
+    rescue StandardError
       puts 'Could not create game with provided info!'
       return
     end
