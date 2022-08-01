@@ -18,4 +18,8 @@ class Item
   def could_be_archived?
     @published_date.to_date < Date.today - 10
   end
+
+  def move_to_archive
+    @archived = true if could_be_archived? == true
+  end
 end
