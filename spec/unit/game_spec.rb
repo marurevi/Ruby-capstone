@@ -2,22 +2,24 @@ require_relative '../../lib/game'
 
 describe Game do
   before(:all) do
-    @item = Game.new(
+    @game = Game.new(
       ['some genre', 'some author', 'some source',
-       'some label'], DateTime.new(2017, 12, 25), 'the-item-id', archived: false
+       'some label', 'multiplayer', DateTime.new(2021, 2, 15)], DateTime.new(2017, 12, 25), 'the-game-id', archived: false
     )
   end
 
   context 'When testing the game class' do
     it 'should instantiate the game class with the properties' do
-      expect(@item).to be_truthy
-      expect(@item.id).to eq 'the-item-id'
-      expect(@item.genre).to eq 'some genre'
-      expect(@item.author).to eq 'some author'
-      expect(@item.source).to eq 'some source'
-      expect(@item.label).to eq 'some label'
-      expect(@item.published_date.is_a?(DateTime)).to be true
-      expect(@item.archived).to eq false
+      expect(@game).to be_truthy
+      expect(@game.id).to eq 'the-game-id'
+      expect(@game.genre).to eq 'some genre'
+      expect(@game.author).to eq 'some author'
+      expect(@game.source).to eq 'some source'
+      expect(@game.label).to eq 'some label'
+      expect(@game.published_date.is_a?(DateTime)).to be true
+      expect(@game.archived).to eq false
+      expect(@game.multiplayer).to eq 'multiplayer'
+      expect(@game.last_played_at.is_a?(DateTime)).to be true
     end
   end
 end
