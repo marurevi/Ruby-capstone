@@ -1,4 +1,16 @@
+require_relative 'game'
+
 class App
+  attr_reader :games
+
+  def initialize
+    @games = [Game.new(
+      ['rpg', 'blizzard', 'some source',
+       'some label', 'multiplayer', DateTime.new(2019, 2, 15)],
+      DateTime.new(2017, 12, 25), 'the-game-id', archived: false
+    )]
+  end
+
   def call_input(first)
     puts "What would you like to do #{first ? 'first' : 'next'}? (1 - 13)"
     puts '1 - List all books'
@@ -18,9 +30,9 @@ class App
   end
 
   def cases(command)
-    return unless %w[].include? command
+    return unless %w[4].include? command
 
-    { 1 => -> {} }[command].call
+    { '4' => -> { list_games } }[command].call
   end
 
   def action(first)
@@ -38,5 +50,13 @@ class App
     end
     puts ' '
     puts 'Leaving the catalogue... Goodbye!'
+  end
+
+  private
+
+  def list_games
+    @games.each.with_index do |game, i|
+      puts "#{i}) [Game] The #{game.genre} game by #{game.author} was released in #{game.published_date.to_date}."
+    end
   end
 end
