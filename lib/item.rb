@@ -15,7 +15,7 @@ class Item
     @archived = archived
   end
 
-  def could_be_archived?
+  def can_be_archived?
     @published_date.to_date < Date.today - 10
   end
 
