@@ -1,7 +1,9 @@
 require_relative '../../lib/author'
+require_relative '../../lib/item'
 
 fdescribe 'An author' do
   let(:author) { Author.new('first-name', 'last-name', 'the-author-id') }
+  let(:item) { Item.new(Date.new(2011, 12, 25), 'the-item-id') }
 
   it 'should be initialized as an author object with properties' do
     expect(author).to be_a Author
@@ -12,9 +14,7 @@ fdescribe 'An author' do
   end
 
   it 'should have items added to the items property in the add_item method' do
-    author.add_item('some item')
+    author.add_item(item)
     expect(author.items.size).to eq 1
-    author.add_item('some other item')
-    expect(author.items.size).to eq 2
   end
 end

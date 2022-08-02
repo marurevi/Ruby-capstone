@@ -11,6 +11,11 @@ class Author
     @items = []
   end
 
+  def add_item(item)
+    item.author = self
+    @items << item
+  end
+
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
