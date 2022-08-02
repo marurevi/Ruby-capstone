@@ -6,12 +6,12 @@ class Item
   attr_accessor :archived
 
   def initialize(objects, published_date, id = SecureRandom.uuid, archived: false)
-    @id = id
     @genre = objects[0]
     @author = objects[1]
     @source = objects[2]
     @label = objects[3]
     @published_date = published_date
+    @id = id
     @archived = archived
   end
 
@@ -21,5 +21,16 @@ class Item
 
   def move_to_archive
     @archived = true if can_be_archived? == true
+  end
+
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'props' => [@id, @age, @name, @parent_permission]
+    }.to_json(*args)
+  end
+
+  def json_create(object)
+    new(*object['props'])
   end
 end
