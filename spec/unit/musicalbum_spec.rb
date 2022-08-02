@@ -10,7 +10,7 @@ describe MusicAlbum do
 
   context 'When testing the musicalbum class' do
     it 'should instantiate the item class with the properties' do
-      expect(@musicalbum.published_date.is_a?(DateTime)).to be true
+      expect(@musicalbum.published_date.is_a?(DateTime.new(2011, 12, 25))).to be true
       expect(@musicalbum.on_spotify).to be true
       expect(@musicalbum.archived).to eq false
     end
