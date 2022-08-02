@@ -3,3 +3,6 @@
 
 # ignore bundler config
 /.bundle
+
+# ignore rspect file
+/spec/examples.txt
