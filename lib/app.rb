@@ -13,6 +13,8 @@ class App
   def initialize
     @games = File.file?('data/games.json') ? load('data/games.json')['games'] : []
     @authors = File.file?('data/authors.json') ? load('data/authors.json')['authors'] : []
+    @musicalbums = []
+    @genres = []
   end
 
   def call_input(first)
@@ -34,10 +36,10 @@ class App
   end
 
   def cases(command)
-    return unless %w[4 7 12].include? command
+    return unless %w[2 4 5 7 10 12].include? command
 
-    { '4' => -> { list_games },
-      '7' => -> { list_authors },
+    { '2' => -> { display_musicalbum }, '4' => -> { list_games }, '5' => -> { display_genre },
+      '7' => -> { list_authors }, '10' => -> { create_musicalbum },
       '12' => -> { add_game } }[command].call
   end
 
@@ -50,11 +52,11 @@ class App
   def run
     puts 'Welcome, choose an option'
     command = action(true)
-    save(@games, @authors)
+    save(@games, @authors, @musicalbums, @genres)
     while command != '13'
       puts ' '
       command = action(false)
-      save(@games, @authors)
+      save(@games, @authors, @musicalbums, @genres)
     end
     puts ' '
     puts 'Leaving the catalogue... Goodbye!'
@@ -106,4 +108,17 @@ class App
       puts "#{i}) [Author] The author is #{author}."
     end
   end
+
+  def display_musicalbum
+    if @musicalbums.length.zero?
+      puts 'No Music Album added yet !'
+    else
+
+      @musicalbums.each_with_index do |album, index|
+        puts "#{index + 1} Music Album :"
+        puts album
+      end
+    end
+  end
+
 end
