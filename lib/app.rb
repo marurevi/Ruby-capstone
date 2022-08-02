@@ -69,7 +69,10 @@ class App
   end
 
   def list_games
-    puts 'There are no games yet!' if @games.empty?
+    if @games.empty?
+      puts 'There are no games yet!'
+      return
+    end
     @games.each.with_index do |game, i|
       puts "#{i}) [Game] The #{game.genre} game by #{game.author} was released in #{game.published_date.to_date}."
     end
