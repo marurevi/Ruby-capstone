@@ -16,7 +16,8 @@ class Game < Item
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
-      'props' => [@genre, @author, @source, @label, @published_date.to_date, @id, @archived, @multiplayer, last_played_at.to_date]
+      'props' => [@genre, @author, @source, @label, @published_date.to_date, @id, @archived, @multiplayer,
+                  last_played_at.to_date]
     }.to_json(*args)
   end
 end

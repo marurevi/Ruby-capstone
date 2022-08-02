@@ -23,7 +23,7 @@ module Loaders
       year1, month1, day1 = last_played_at.split('-')
       games << Game.new([genre, author, source,
                          label, multiplayer, DateTime.new(year1.to_i, month1.to_i, day1.to_i)],
-                        DateTime.new(year.to_i, month.to_i, day.to_i))
+                        DateTime.new(year.to_i, month.to_i, day.to_i), id, archived: archived)
     end
     games
   end
