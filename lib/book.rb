@@ -30,7 +30,7 @@ class Book < Item
     year, month, day = book['published_date'].split('-')
     newbook = new(
       Date.new(year.to_i, month.to_i, day.to_i),
-      book['cover_state'], book['id'], archived: book['archived'] 
+      book['cover_state'], book['id'], archived: book['archived']
     )
     newbook.author = book['author']
     newbook.genre = book['genre']
