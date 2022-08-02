@@ -120,4 +120,15 @@ class App
       end
     end
   end
+  
+  def display_genre
+    if @genres.length.zero?
+      puts 'No Genre registered yet!'
+    else
+
+      @genres.each_with_index do |genre, index|
+        puts "#{index + 1}) Genre : #{genre}"
+      end
+    end
+  end
 end
