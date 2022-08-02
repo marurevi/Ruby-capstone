@@ -18,6 +18,6 @@ class Item
   private
 
   def can_be_archived?
-    @published_date.to_date < Date.today.year - 10
+    @published_date.to_date.year < Date.today.year - 10
   end
 end

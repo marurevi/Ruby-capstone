@@ -10,7 +10,7 @@ class Game < Item
   end
 
   def can_be_archived?
-    @published_date.to_date < Date.today - 10 && @last_played_at.to_date < Date.today - 2
+    @published_date.year < Date.today.year - 10 && @last_played_at.year < Date.today.year - 2
   end
 
   def to_json(*args)
