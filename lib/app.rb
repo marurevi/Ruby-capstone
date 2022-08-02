@@ -12,6 +12,8 @@ class App
   def initialize
     @games = []
     @games_file = 'games.json'
+    @authors = []
+    @authors_file = 'authors.json'
   end
 
   def call_input(first)
@@ -33,9 +35,10 @@ class App
   end
 
   def cases(command)
-    return unless %w[4 12].include? command
+    return unless %w[4 7 12].include? command
 
     { '4' => -> { list_games },
+      '7' => -> { list_authors },
       '12' => -> { add_game } }[command].call
   end
 
@@ -99,5 +102,15 @@ class App
     end
     puts 'Game created successfully!'
     @games << game
+  end
+
+  def list_authors
+    if @authors.empty?
+      puts 'There are no authors yet!'
+      return
+    end
+    @authors.each.with_index do |author, i|
+      puts "#{i}) [Author] The author is #{author}."
+    end
   end
 end
