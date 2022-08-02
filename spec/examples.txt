@@ -1,8 +1,8 @@
 example_id                            | status | run_time        |
 ------------------------------------- | ------ | --------------- |
-./spec/unit/genre_spec.rb[1:1]        | passed | 0.14756 seconds |
-./spec/unit/genre_spec.rb[1:2]        | passed | 0.04066 seconds |
-./spec/unit/item_spec.rb[1:1:1]       | passed | 0.01416 seconds |
-./spec/unit/item_spec.rb[1:1:2]       | passed | 0.00033 seconds |
-./spec/unit/item_spec.rb[1:1:3]       | passed | 0.00075 seconds |
-./spec/unit/musicalbum_spec.rb[1:1:1] | failed | 0.00046 seconds |
+./spec/unit/genre_spec.rb[1:1]        | passed | 0.07795 seconds |
+./spec/unit/genre_spec.rb[1:2]        | passed | 0.03746 seconds |
+./spec/unit/item_spec.rb[1:1:1]       | passed | 0.05331 seconds |
+./spec/unit/item_spec.rb[1:1:2]       | passed | 0.01623 seconds |
+./spec/unit/item_spec.rb[1:1:3]       | passed | 0.00041 seconds |
+./spec/unit/musicalbum_spec.rb[1:1:1] | failed | 0.00023 seconds |
