@@ -1,4 +1,4 @@
-require_relative '../../lib/book'
+require_relative 'item'
 require 'securerandom'
 
 class Book < Item
