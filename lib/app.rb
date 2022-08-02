@@ -11,8 +11,8 @@ class App
   include Loaders
 
   def initialize
-    @games = File.file?('data/games.json') ? load('data/games.json')['games'] : []
     @authors = File.file?('data/authors.json') ? load('data/authors.json')['authors'] : []
+    @games = File.file?('data/games.json') ? load('data/games.json')['games'] : []
   end
 
   def call_input(first)
@@ -74,7 +74,10 @@ class App
 
   def add_game
     genre = [(print 'Genre: '), gets.rstrip][1]
-    author = [(print 'Author: '), gets.rstrip][1]
+    inp_author_first = [(print 'Author first name: '), gets.rstrip][1]
+    inp_author_last = [(print 'Author last name: '), gets.rstrip][1]
+    author = @authors.find { |a| a.first_name == inp_author_first && a.last_name == inp_author_last }
+    author = author.nil? ? Author.new(inp_author_first, inp_author_last) : author
     source = [(print 'Source: '), gets.rstrip][1]
     label = [(print 'Label: '), gets.rstrip][1]
     published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
