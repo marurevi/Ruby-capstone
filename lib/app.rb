@@ -5,15 +5,14 @@ require_relative 'loaders'
 require_relative 'serializers'
 
 class App
-  include Loaders
+  attr_reader :games, :authors
+
   include Serializers
-  attr_reader :games
+  include Loaders
 
   def initialize
-    @games = []
-    @games_file = 'games.json'
-    @authors = []
-    @authors_file = 'authors.json'
+    @games = File.file?('data/games.json') ? load('data/games.json')['games'] : []
+    @authors = File.file?('data/authors.json') ? load('data/authors.json')['authors'] : []
   end
 
   def call_input(first)
@@ -49,28 +48,19 @@ class App
   end
 
   def run
-    load
     puts 'Welcome, choose an option'
     command = action(true)
-    save
+    save(@games, @authors)
     while command != '13'
       puts ' '
       command = action(false)
-      save
+      save(@games, @authors)
     end
     puts ' '
     puts 'Leaving the catalogue... Goodbye!'
   end
 
   private
-
-  def load
-    @games = load_all(@games_file)[0]
-  end
-
-  def save
-    serialize_all([@games, @games_file])
-  end
 
   def list_games
     if @games.empty?
@@ -93,9 +83,12 @@ class App
     last_played_at = [(print 'Last played at (yyyy-mm-dd): '), gets.rstrip][1]
     year1, month1, day1 = last_played_at.split('-')
     begin
-      game = Game.new([genre, author, source,
-                       label, multiplayer, DateTime.new(year1.to_i, month1.to_i, day1.to_i)],
+      game = Game.new(multiplayer, DateTime.new(year1.to_i, month1.to_i, day1.to_i),
                       DateTime.new(year.to_i, month.to_i, day.to_i))
+      game.author = author
+      game.genre = genre
+      game.source = source
+      game.label = label
     rescue StandardError
       puts 'Could not create game with provided info!'
       return
