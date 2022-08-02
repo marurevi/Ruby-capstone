@@ -12,4 +12,11 @@ class Game < Item
   def can_be_archived?
     @published_date.to_date < Date.today - 10 && @last_played_at.to_date < Date.today - 2
   end
+
+  def to_json(*args)
+    {
+      JSON.create_id => self.class.name,
+      'props' => [@genre, @author, @source, @label, @published_date.to_date, @id, @archived, @multiplayer, last_played_at.to_date]
+    }.to_json(*args)
+  end
 end
