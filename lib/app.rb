@@ -49,6 +49,7 @@ class App
     load
     puts 'Welcome, choose an option'
     command = action(true)
+    save
     while command != '13'
       puts ' '
       command = action(false)
