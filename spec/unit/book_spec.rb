@@ -16,6 +16,6 @@ describe 'A book' do
   end
   it 'should overwrite parent method if cover_state is bad' do
     book.cover_state = 'bad'
-    expect(book.can_be_archived?).to be true
+    expect(book.can_be_archived?).to be 'true'
   end
 end
