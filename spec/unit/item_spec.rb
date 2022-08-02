@@ -1,29 +1,21 @@
 require_relative '../../lib/item'
 
 describe Item do
-  before(:all) do
-    @item = Item.new(
-      ['some genre', 'some author', 'some source',
-       'some label'], DateTime.new(2011, 12, 25), 'the-item-id', archived: false
-    )
-  end
+  date = Date.new(2015, 12, 25)
+  let(:item) { Item.new date, 'the-item-id' }
 
   context 'When testing the item class' do
     it 'should instantiate the item class with the properties' do
-      expect(@item).to be_truthy
-      expect(@item.id).to eq 'the-item-id'
-      expect(@item.genre).to eq 'some genre'
-      expect(@item.author).to eq 'some author'
-      expect(@item.source).to eq 'some source'
-      expect(@item.label).to eq 'some label'
-      expect(@item.published_date.is_a?(DateTime)).to be true
-      expect(@item.archived).to eq false
+      expect(item).to be_truthy
+      expect(item.id).to eq 'the-item-id'
+      expect(item.published_date.is_a?(DateTime)).to be true
+      expect(item.archived).to eq false
     end
-    it 'should return true if published_date is older than 10 years' do
-      expect(@item.could_be_archived?).to be true
+    it 'could be archived if published_date is older than 10 years' do
+      expect(item.could_be_archived?).to be true
     end
-    it 'should be true if published_date can move to archive' do
-      expect(@item.move_to_archive).to be true
+    it 'should be moved to archive if can be archived' do
+      expect(item.move_to_archive).to be true
     end
   end
 end
