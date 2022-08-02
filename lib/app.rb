@@ -1,10 +1,17 @@
+require 'json'
+
 require_relative 'game'
+require_relative 'loaders'
+require_relative 'serializers'
 
 class App
+  include Loaders
+  include Serializers
   attr_reader :games
 
   def initialize
     @games = []
+    @games_file = 'games.json'
   end
 
   def call_input(first)
@@ -39,17 +46,27 @@ class App
   end
 
   def run
+    load
     puts 'Welcome, choose an option'
     command = action(true)
     while command != '13'
       puts ' '
       command = action(false)
+      save
     end
     puts ' '
     puts 'Leaving the catalogue... Goodbye!'
   end
 
   private
+
+  def load
+    @games = load_all(@games_file)[0]
+  end
+
+  def save
+    serialize_all([@games, @games_file])
+  end
 
   def list_games
     puts 'There are no games yet!' if @games.empty?
