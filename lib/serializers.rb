@@ -1,8 +1,9 @@
 module Serializers
-  def save(games, authors)
+  def save(games, authors, books)
     files = [
       { name: 'games', payload: games },
-      { name: 'authors', payload: authors }
+      { name: 'authors', payload: authors },
+      { name: 'books', payload: books }
     ]
 
     files.each do |file|
