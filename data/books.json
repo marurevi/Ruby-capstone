@@ -1,0 +1,14 @@
+{
+  "books": [
+    {
+      "json_class": "Book",
+      "genre": "a",
+      "author": "b",
+      "label": "c",
+      "published_date": "0001-01-01",
+      "id": "c3e43dea-392a-471b-bfb9-e89b5486a708",
+      "archived": true,
+      "cover_state": "bad"
+    }
+  ]
+}
