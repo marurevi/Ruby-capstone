@@ -103,6 +103,7 @@ class App
     author = author.nil? ? Author.new(inp_author_first, inp_author_last) : author
     title = [(print 'Title: '), gets.rstrip][1]
     color = [(print 'Color: '), gets.rstrip][1]
+    label = @labels.find { |lb| lb.title == title && lb.color == color }
     label = label.nil? ? Label.new(title, color) : label
     [genre, author, label]
   end
@@ -176,7 +177,7 @@ class App
       return
     end
     @labels.each.with_index do |label, i|
-      puts "#{i}) [Label] The label is #{label}."
+      puts "#{i}) [Label] The label correspond to #{label.title} whith color #{label.color}."
     end
   end
 end

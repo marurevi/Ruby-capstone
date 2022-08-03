@@ -26,6 +26,15 @@
       "items": [
         "594f7d64-118f-4958-bc1a-a1a3a62b1a94"
       ]
+    },
+    {
+      "json_class": "Author",
+      "first_name": "Dan",
+      "last_name": "Brown",
+      "id": "3092b6ee-49db-4b25-b0df-78a0d48485f0",
+      "items": [
+        "d1364454-831a-4b5f-80c9-9c11561b0c69"
+      ]
     }
   ]
 }

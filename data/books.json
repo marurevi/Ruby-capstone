@@ -20,6 +20,13 @@
       "id": "594f7d64-118f-4958-bc1a-a1a3a62b1a94",
       "archived": true,
       "cover_state": "asdf"
+    },
+    {
+      "json_class": "Book",
+      "published_date": "0001-01-01",
+      "id": "d1364454-831a-4b5f-80c9-9c11561b0c69",
+      "archived": true,
+      "cover_state": "bad"
     }
   ]
 }

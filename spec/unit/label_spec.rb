@@ -1,7 +1,7 @@
 require_relative '../../lib/label'
 require_relative '../../lib/item'
 
-fdescribe 'A label' do
+describe 'A label' do
   date = Date.new(2011, 12, 25)
 
   let(:label) { Label.new('Title', 'color', 'the-label-id') }
