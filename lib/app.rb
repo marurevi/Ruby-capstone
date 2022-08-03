@@ -178,8 +178,7 @@ class App
     else
 
       @musicalbums.each_with_index do |album, index|
-        puts "#{index + 1} Music Album :"
-        puts album
+        puts "#{index + 1} Music Album : #{album.published_date.to_date}"
       end
     end
   end

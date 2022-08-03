@@ -4,8 +4,8 @@
       "json_class": "MusicAlbum",
       "published_date": "2020-11-12",
       "id": "715a4a05-d5ef-47ad-af05-49e6eae2d700",
-      "on_spotify": true,
-      "archived": false
+      "archived": false,
+      "on_spotify": true
     }
   ]
 }
