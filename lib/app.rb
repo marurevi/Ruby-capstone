@@ -3,6 +3,7 @@ require 'json'
 require_relative 'author'
 require_relative 'game'
 require_relative 'book'
+require_relative 'label'
 require_relative 'loaders'
 require_relative 'serializers'
 
@@ -14,10 +15,12 @@ class App
 
   def initialize
     @authors = File.file?('data/authors.json') ? load('data/authors.json')['authors'] : []
+    @labels = File.file?('data/labels.json') ? load('data/labels.json')['labels'] : []
     @games = File.file?('data/games.json') ? load('data/games.json')['games'] : []
     @books = File.file?('data/books.json') ? load('data/books.json')['books'] : []
     @items = [*@games, *@books]
     find_items(@authors)
+    find_items(@labels)
   end
 
   def call_input(first)
@@ -36,10 +39,11 @@ class App
   end
 
   def cases(command)
-    return unless %w[1 3 6 7 9].include? command
+    return unless %w[1 3 5 6 7 9].include? command
 
     { '1' => -> { list_books },
       '3' => -> { list_games },
+      '5' => -> { list_labels },
       '6' => -> { list_authors },
       '7' => -> { add_book },
       '9' => -> { add_game } }[command].call
@@ -54,11 +58,11 @@ class App
   def run
     puts 'Welcome, choose an option'
     command = action(true)
-    save(@games, @authors, @books)
+    save(@games, @authors, @books, @labels)
     while command != '10'
       puts ' '
       command = action(false)
-      save(@games, @authors, @books)
+      save(@games, @authors, @books, @labels)
     end
     puts ' '
     puts 'Leaving the catalogue... Goodbye!'
@@ -113,8 +117,9 @@ class App
                       DateTime.new(year.to_i, month.to_i, day.to_i))
       author.add_item(game)
       @authors << author unless @authors.include?(author)
+      label.add_item(game)
+      @labels << label unless @labels.include?(label)
       game.genre = genre
-      game.label = label
     rescue StandardError
       puts 'Could not create game with provided info!'
       return
@@ -139,7 +144,7 @@ class App
       return
     end
     @books.each.with_index do |bk, i|
-      puts "#{i}) [Game] The #{bk.genre} book by #{bk.author.first_name} was released in #{bk.published_date.to_date}."
+      puts "#{i}) [Book] The #{bk.genre} book by #{bk.author.first_name} was released in #{bk.published_date.to_date}."
     end
   end
 
@@ -152,13 +157,24 @@ class App
       book = Book.new(Date.new(year.to_i, month.to_i, day.to_i), cover_state)
       author.add_item(book)
       @authors << author unless @authors.include?(author)
+      label.add_item(book)
+      @labels << label unless @labels.include?(label)
       book.genre = genre
-      book.label = label
     rescue StandardError
       puts 'Could not create book with provided info!'
       return
     end
     puts 'Book created successfully!'
     @books << book
+  end
+
+  def list_labels
+    if @labels.empty?
+      puts 'There are no labels yet!'
+      return
+    end
+    @labels.each.with_index do |label, i|
+      puts "#{i}) [Label] The label is #{label}."
+    end
   end
 end

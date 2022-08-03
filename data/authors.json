@@ -1,0 +1,13 @@
+{
+  "authors": [
+    {
+      "json_class": "Author",
+      "first_name": "Stephen",
+      "last_name": "King",
+      "id": "6c50c25a-274f-4800-b561-c996632e101e",
+      "items": [
+        "84a7835e-d2c2-4cb4-9618-5388c5dbc06b"
+      ]
+    }
+  ]
+}
