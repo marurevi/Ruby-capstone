@@ -1,0 +1,40 @@
+{
+  "labels": [
+    {
+      "json_class": "Label",
+      "title": null,
+      "color": null,
+      "id": "7b3fe0db-2d6c-4e77-a473-3434b59e2d5c",
+      "items": [
+        "9c04c6fd-2c62-47e3-9d70-b03b5ba87268"
+      ]
+    },
+    {
+      "json_class": "Label",
+      "title": null,
+      "color": null,
+      "id": "464e414a-9289-4ae5-9948-732c45385ce9",
+      "items": [
+        "f13739c7-519b-4344-8505-23556ca77750"
+      ]
+    },
+    {
+      "json_class": "Label",
+      "title": null,
+      "color": null,
+      "id": "b20fcef2-7713-470e-97c7-9e04773e9eba",
+      "items": [
+        "594f7d64-118f-4958-bc1a-a1a3a62b1a94"
+      ]
+    },
+    {
+      "json_class": "Label",
+      "title": "Davinci's Code",
+      "color": "brown",
+      "id": "5e053ad2-5f67-4897-aad2-6b3222fff3d8",
+      "items": [
+        "d1364454-831a-4b5f-80c9-9c11561b0c69"
+      ]
+    }
+  ]
+}
