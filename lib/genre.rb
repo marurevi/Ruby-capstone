@@ -12,4 +12,8 @@ class Genre
     @items.push(item) unless @items.include?(item)
     item.add_genre(self)
   end
+
+  def to_s
+    "Name of Genre: #{@name}"
+  end
 end

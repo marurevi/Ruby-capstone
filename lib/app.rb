@@ -189,4 +189,24 @@ class App
       end
     end
   end
+
+  def create_musicalbum
+    genre, author, label = retrieve_objects
+    published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
+    year, month, day = published_date.split('-')
+    on_spotify = [(print 'Is this album on spotify (Type True or False): '), gets.rstrip][1]
+    begin
+      musicalbum = MusicAlbum.new(Date.new(year.to_i, month.to_i, day.to_i), on_spotify)
+      author.add_item(musicalbum)
+      @authors << author unless @authors.include?(author)
+      musicalbum.genre = genre
+      musicalbum.label = label
+    rescue StandardError
+      puts 'Could not create book with provided info!'
+      return
+    end
+    puts 'Music Album successfully added !'
+    @musicalbums << musicalbum
+  end
+
 end
