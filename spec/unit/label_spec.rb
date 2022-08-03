@@ -4,7 +4,7 @@ require_relative '../../lib/item'
 fdescribe 'A label' do
   date = Date.new(2011, 12, 25)
 
-  let(:label) { Label.new('Title', 'color', date, 'the-label-id') }
+  let(:label) { Label.new('Title', 'color', 'the-label-id') }
   let(:item) { Item.new(date, 'the-item-id') }
 
   it 'should be initialized as an label object with properties' do
