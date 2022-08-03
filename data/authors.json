@@ -84,6 +84,15 @@
       "items": [
 
       ]
+    },
+    {
+      "json_class": "Author",
+      "first_name": "rihana",
+      "last_name": "his",
+      "id": "22f47bed-37d0-4472-900b-f39c2293953e",
+      "items": [
+        "6aaf2a5d-ad1b-4d06-b333-017a0c0fa225"
+      ]
     }
   ]
 }

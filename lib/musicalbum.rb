@@ -24,8 +24,7 @@ class MusicAlbum < Item
 
   def self.json_create(musicalbum)
     year, month, day = musicalbum['published_date'].split('-')
-    new( Date.new(year.to_i, month.to_i, day.to_i), 
-    musicalbum['id'], on_spotify: musicalbum['on_spotify'], archived: musicalbum['archived']
-    )
+    new(Date.new(year.to_i, month.to_i, day.to_i),
+        musicalbum['id'], on_spotify: musicalbum['on_spotify'], archived: musicalbum['archived'])
   end
 end

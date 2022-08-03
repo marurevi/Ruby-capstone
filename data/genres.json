@@ -7,6 +7,14 @@
       "items": [
         "715a4a05-d5ef-47ad-af05-49e6eae2d700"
       ]
+    },
+    {
+      "json_class": "Genre",
+      "name": "rnb",
+      "id": "65c32a8b-c48f-493d-9b11-3586bced3903",
+      "items": [
+        "6aaf2a5d-ad1b-4d06-b333-017a0c0fa225"
+      ]
     }
   ]
 }
