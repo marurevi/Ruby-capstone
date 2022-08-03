@@ -21,6 +21,33 @@
       "items": [
         "289d3073-42e7-483f-8827-9a9e5da35039"
       ]
+    },
+    {
+      "json_class": "Author",
+      "first_name": "tw",
+      "last_name": "ue",
+      "id": "d15f88d9-1bb6-40e4-86fb-789cfcac05ec",
+      "items": [
+        "6e27ffb1-c9a8-4409-8b45-3e8debfd5ce1"
+      ]
+    },
+    {
+      "json_class": "Author",
+      "first_name": "fe",
+      "last_name": "ds",
+      "id": "af096242-e987-4c73-9e87-09ac89e2cbce",
+      "items": [
+        "true"
+      ]
+    },
+    {
+      "json_class": "Author",
+      "first_name": "sw",
+      "last_name": "qw",
+      "id": "a9aab8ea-38ab-49a6-b332-461d97ed2257",
+      "items": [
+        "false"
+      ]
     }
   ]
 }

@@ -3,6 +3,8 @@ require 'json'
 require_relative 'author'
 require_relative 'game'
 require_relative 'book'
+require_relative 'musicalbum'
+require_relative 'genre'
 require_relative 'loaders'
 require_relative 'serializers'
 
@@ -202,7 +204,7 @@ class App
       musicalbum.genre = genre
       musicalbum.label = label
     rescue StandardError
-      puts 'Could not create book with provided info!'
+      puts 'Could not create musicalbum with provided info!'
       return
     end
     puts 'Music Album successfully added !'
