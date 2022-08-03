@@ -23,6 +23,13 @@ create table books(
   primary key (id)
 );
 
+create table labels_items(
+  label_id int,
+  item_id int,
+  foreign key (label_id) references labels(id),
+  foreign key (item_id) references items(id)
+);
+
 
 
 
