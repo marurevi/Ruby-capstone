@@ -1,7 +1,11 @@
 {
   "musicalbums": [
-    "#<MusicAlbum:0x000002259023a520>",
-    "#<MusicAlbum:0x0000022590280e58>",
-    "#<MusicAlbum:0x0000022590293d28>"
+    {
+      "json_class": "MusicAlbum",
+      "published_date": "2020-11-12",
+      "id": "715a4a05-d5ef-47ad-af05-49e6eae2d700",
+      "on_spotify": true,
+      "archived": false
+    }
   ]
 }
