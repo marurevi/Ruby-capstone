@@ -17,13 +17,14 @@ class App
 
   def initialize
     @authors = File.file?('data/authors.json') ? load('data/authors.json')['authors'] : []
+    @genres = File.file?('data/genres.json') ? load('data/genres.json')['genres'] : []
     @labels = File.file?('data/labels.json') ? load('data/labels.json')['labels'] : []
     @games = File.file?('data/games.json') ? load('data/games.json')['games'] : []
     @books = File.file?('data/books.json') ? load('data/books.json')['books'] : []
-    @musicalbums = []
-    @genres = []
-    @items = [*@games, *@books]
+    @musicalbums = File.file?('data/musicalbums.json') ? load('data/musicalbums.json')['musicalbums'] : []
+    @items = [*@games, *@books, *@musicalbums]
     find_items(@authors)
+    find_items(@genres)
     find_items(@labels)
   end
 
@@ -198,8 +199,7 @@ class App
       puts 'No Music Album added yet !'
     else
       @musicalbums.each_with_index do |album, index|
-        puts "#{index + 1} Music Album :"
-        puts album
+        puts "#{index + 1} Music Album : #{album.published_date.to_date}"
       end
     end
   end
