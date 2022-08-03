@@ -3,30 +3,10 @@
     {
       "json_class": "Book",
       "published_date": "0001-01-01",
-      "id": "9c04c6fd-2c62-47e3-9d70-b03b5ba87268",
+      "publisher": "Atenea",
+      "id": "803b396b-08b9-47e1-b1ec-ea7455d4590f",
       "archived": true,
-      "cover_state": "good"
-    },
-    {
-      "json_class": "Book",
-      "published_date": "0001-01-01",
-      "id": "f13739c7-519b-4344-8505-23556ca77750",
-      "archived": true,
-      "cover_state": "good"
-    },
-    {
-      "json_class": "Book",
-      "published_date": "0002-02-02",
-      "id": "594f7d64-118f-4958-bc1a-a1a3a62b1a94",
-      "archived": true,
-      "cover_state": "good"
-    },
-    {
-      "json_class": "Book",
-      "published_date": "2021-12-14",
-      "id": "6e27ffb1-c9a8-4409-8b45-3e8debfd5ce1",
-      "archived": false,
-      "cover_state": "good"
+      "cover_state": "bad"
     }
   ]
 }
