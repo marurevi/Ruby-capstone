@@ -30,7 +30,8 @@ create table labels_items(
   foreign key (item_id) references items(id)
 );
 
-
+CREATE INDEX ON labels_items (label_id);
+CREATE INDEX ON labels_items (item_id);
 
 
 -- Genre and Music Albums tables (genre is 1:m)
