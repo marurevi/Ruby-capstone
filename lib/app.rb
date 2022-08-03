@@ -3,6 +3,8 @@ require 'json'
 require_relative 'author'
 require_relative 'game'
 require_relative 'book'
+require_relative 'musicalbum'
+require_relative 'genre'
 require_relative 'loaders'
 require_relative 'serializers'
 
@@ -16,6 +18,8 @@ class App
     @authors = File.file?('data/authors.json') ? load('data/authors.json')['authors'] : []
     @games = File.file?('data/games.json') ? load('data/games.json')['games'] : []
     @books = File.file?('data/books.json') ? load('data/books.json')['books'] : []
+    @musicalbums = []
+    @genres = []
     @items = [*@games, *@books]
     find_items(@authors)
   end
@@ -36,12 +40,15 @@ class App
   end
 
   def cases(command)
-    return unless %w[1 3 6 7 9].include? command
+    return unless %w[1 2 3 4 6 7 8 9].include? command
 
     { '1' => -> { list_books },
+      '2' => -> { list_musicalbum },
       '3' => -> { list_games },
+      '4' => -> { list_genre },
       '6' => -> { list_authors },
       '7' => -> { add_book },
+      '8' => -> { create_musicalbum },
       '9' => -> { add_game } }[command].call
   end
 
@@ -54,11 +61,11 @@ class App
   def run
     puts 'Welcome, choose an option'
     command = action(true)
-    save(@games, @authors, @books)
+    save(@games, @authors, @books, @musicalbums, @genres)
     while command != '10'
       puts ' '
       command = action(false)
-      save(@games, @authors, @books)
+      save(@games, @authors, @books, @musicalbums, @genres)
     end
     puts ' '
     puts 'Leaving the catalogue... Goodbye!'
@@ -92,7 +99,9 @@ class App
   end
 
   def retrieve_objects
-    genre = [(print 'Genre: '), gets.rstrip][1]
+    inp_genre = [(print 'Genre: '), gets.rstrip][1]
+    genre = @genres.find { |g| g.name == inp_genre }
+    genre = genre.nil? ? Genre.new(inp_genre) : genre
     inp_author_first = [(print 'Author first name: '), gets.rstrip][1]
     inp_author_last = [(print 'Author last name: '), gets.rstrip][1]
     author = @authors.find { |a| a.first_name == inp_author_first && a.last_name == inp_author_last }
@@ -160,5 +169,48 @@ class App
     end
     puts 'Book created successfully!'
     @books << book
+  end
+
+  def list_musicalbum
+    if @musicalbums.length.zero?
+      puts 'No Music Album added yet !'
+    else
+
+      @musicalbums.each_with_index do |album, index|
+        puts "#{index + 1} Music Album :"
+        puts album
+      end
+    end
+  end
+
+  def list_genre
+    if @genres.length.zero?
+      puts 'No Genre registered yet!'
+    else
+
+      @genres.each_with_index do |genre, index|
+        puts "#{index + 1}) Genre : #{genre}"
+      end
+    end
+  end
+
+  def create_musicalbum
+    genre, author, label = retrieve_objects
+    published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
+    year, month, day = published_date.split('-')
+    on_spotify = [(print 'Is this album on spotify (Type True or False): '), gets.rstrip][1] == 'True'
+    begin
+      musicalbum = MusicAlbum.new(Date.new(year.to_i, month.to_i, day.to_i), on_spotify: on_spotify)
+      author.add_item(musicalbum)
+      @authors << author unless @authors.include?(author)
+      genre.add_item(musicalbum)
+      @genres << genre unless @genres.include?(genre)
+      musicalbum.label = label
+    rescue StandardError
+      puts 'Could not create musicalbum with provided info!'
+      return
+    end
+    puts 'Music Album successfully added !'
+    @musicalbums << musicalbum
   end
 end
