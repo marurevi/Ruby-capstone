@@ -1,0 +1,26 @@
+{
+  "authors": [
+    {
+      "json_class": "Author",
+      "first_name": "d",
+      "last_name": "m",
+      "id": "ebcbd72a-c83b-4117-b61a-55a03e6ddf14",
+      "items": [
+        "060f31cb-0c55-44e1-834e-b8c1f1d9c527",
+        "bbabd134-36b7-4306-bc4a-3b384236f57a",
+        "a91d7151-b8a9-4920-aba0-7688f9df2622",
+        "c3e43dea-392a-471b-bfb9-e89b5486a708",
+        "9ce1326b-55c6-4c48-8a5b-7bdd73671539"
+      ]
+    },
+    {
+      "json_class": "Author",
+      "first_name": "m",
+      "last_name": "r",
+      "id": "2bdc460f-8743-42c8-afd6-4c657796aa6e",
+      "items": [
+        "289d3073-42e7-483f-8827-9a9e5da35039"
+      ]
+    }
+  ]
+}

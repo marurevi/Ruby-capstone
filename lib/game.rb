@@ -16,10 +16,6 @@ class Game < Item
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
-      'genre' => @genre,
-      'author' => @author,
-      'source' => @source,
-      'label' => @label,
       'published_date' => @published_date.to_date,
       'id' => @id,
       'archived' => @archived,
@@ -31,14 +27,9 @@ class Game < Item
   def self.json_create(game)
     year, month, day = game['published_date'].split('-')
     year1, month1, day1 = game['last_played_at'].split('-')
-    newgame = new(
+    new(
       game['multiplayer'], DateTime.new(year1.to_i, month1.to_i, day1.to_i),
       DateTime.new(year.to_i, month.to_i, day.to_i), game['id'], archived: game['archived']
     )
-    newgame.author = game['author']
-    newgame.genre = game['genre']
-    newgame.source = game['source']
-    newgame.label = game['label']
-    newgame
   end
 end
