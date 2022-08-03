@@ -12,7 +12,7 @@ class Author
   end
 
   def add_item(item)
-    item.author = self
+    item.author = self if item.class != String
     @items << item
   end
 

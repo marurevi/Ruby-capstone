@@ -1,5 +1,6 @@
 require 'json'
 
+require_relative 'author'
 require_relative 'game'
 require_relative 'book'
 require_relative 'loaders'
@@ -15,6 +16,8 @@ class App
     @authors = File.file?('data/authors.json') ? load('data/authors.json')['authors'] : []
     @games = File.file?('data/games.json') ? load('data/games.json')['games'] : []
     @books = File.file?('data/books.json') ? load('data/books.json')['books'] : []
+    @items = [*@games, *@books]
+    find_items(@authors)
   end
 
   def call_input(first)
@@ -63,23 +66,43 @@ class App
 
   private
 
+  def find_items(objs)
+    objs.each do |obj|
+      newitems = []
+      obj.items.each do |id|
+        @items.each do |item|
+          newitems << item if id == item.id
+        end
+      end
+      obj.items = []
+      newitems.each do |item|
+        obj.add_item(item)
+      end
+    end
+  end
+
   def list_games
     if @games.empty?
       puts 'There are no games yet!'
       return
     end
     @games.each.with_index do |game, i|
-      puts "#{i}) [Game] The #{game.genre} game by #{game.author} was released in #{game.published_date.to_date}."
+      puts "#{i}) [Game] The #{game.genre} game by #{game.author.first_name} was released in #{game.published_date.to_date}."
     end
   end
 
-  def add_game
+  def retrieve_objects
     genre = [(print 'Genre: '), gets.rstrip][1]
     inp_author_first = [(print 'Author first name: '), gets.rstrip][1]
     inp_author_last = [(print 'Author last name: '), gets.rstrip][1]
     author = @authors.find { |a| a.first_name == inp_author_first && a.last_name == inp_author_last }
     author = author.nil? ? Author.new(inp_author_first, inp_author_last) : author
     label = [(print 'Label: '), gets.rstrip][1]
+    [genre, author, label]
+  end
+
+  def add_game
+    genre, author, label = retrieve_objects
     published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
     year, month, day = published_date.split('-')
     multiplayer = [(print 'Multiplayer: '), gets.rstrip][1]
@@ -88,7 +111,8 @@ class App
     begin
       game = Game.new(multiplayer, DateTime.new(year1.to_i, month1.to_i, day1.to_i),
                       DateTime.new(year.to_i, month.to_i, day.to_i))
-      game.author = author
+      author.add_item(game)
+      @authors << author unless @authors.include?(author)
       game.genre = genre
       game.label = label
     rescue StandardError
@@ -115,20 +139,19 @@ class App
       return
     end
     @books.each.with_index do |bk, i|
-      puts "#{i}) [Game] The #{bk.genre} book by #{bk.author} was released in #{bk.published_date.to_date}."
+      puts "#{i}) [Game] The #{bk.genre} book by #{bk.author.first_name} was released in #{bk.published_date.to_date}."
     end
   end
 
   def add_book
-    genre = [(print 'Genre: '), gets.rstrip][1]
-    author = [(print 'Author: '), gets.rstrip][1]
-    label = [(print 'Label: '), gets.rstrip][1]
+    genre, author, label = retrieve_objects
     published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
     year, month, day = published_date.split('-')
     cover_state = [(print 'Cover state, (good or bad): '), gets.rstrip][1]
     begin
       book = Book.new(Date.new(year.to_i, month.to_i, day.to_i), cover_state)
-      book.author = author
+      author.add_item(book)
+      @authors << author unless @authors.include?(author)
       book.genre = genre
       book.label = label
     rescue StandardError
