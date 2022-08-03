@@ -43,9 +43,7 @@ class App
   end
 
   def cases(command)
-
     return unless %w[1 2 3 4 5 6 7 8 9].include? command
-
 
     { '1' => -> { list_books },
       '2' => -> { list_musicalbum },

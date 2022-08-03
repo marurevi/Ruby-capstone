@@ -4,7 +4,7 @@ module Serializers
       { name: 'games', payload: games },
       { name: 'authors', payload: authors },
       { name: 'books', payload: books },
-      { name: 'labels', payload: labels }
+      { name: 'labels', payload: labels },
       { name: 'musicalbums', payload: musicalbums },
       { name: 'genres', payload: genres }
     ]
