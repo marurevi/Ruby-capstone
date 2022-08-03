@@ -1,6 +1,6 @@
 class Genre
-  attr_accessor :items
-  attr_reader :name
+  attr_accessor :name, :items
+  attr_reader :id
 
   def initialize(name, id = SecureRandom.uuid)
     @name = name
@@ -12,5 +12,4 @@ class Genre
     item.genre = self if item.class != String
     @items << item
   end
-
 end

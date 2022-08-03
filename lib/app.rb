@@ -100,7 +100,7 @@ class App
 
   def retrieve_objects
     inp_genre = [(print 'Genre: '), gets.rstrip][1]
-    genre = @genres.find { |g| g.name == inp_genre  }
+    genre = @genres.find { |g| g.name == inp_genre }
     genre = genre.nil? ? Genre.new(inp_genre) : genre
     inp_author_first = [(print 'Author first name: '), gets.rstrip][1]
     inp_author_last = [(print 'Author last name: '), gets.rstrip][1]
