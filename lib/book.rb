@@ -16,9 +16,6 @@ class Book < Item
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
-      'genre' => @genre,
-      'author' => @author,
-      'label' => @label,
       'published_date' => @published_date.to_date,
       'id' => @id,
       'archived' => @archived,
@@ -28,14 +25,10 @@ class Book < Item
 
   def self.json_create(book)
     year, month, day = book['published_date'].split('-')
-    newbook = new(
+    new(
       Date.new(year.to_i, month.to_i, day.to_i),
       book['cover_state'], book['id'], archived: book['archived']
     )
-    newbook.author = book['author']
-    newbook.genre = book['genre']
-    newbook.label = book['label']
-    newbook
   end
 
   private
