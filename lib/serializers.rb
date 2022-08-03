@@ -1,5 +1,5 @@
 module Serializers
-  def save(games, authors, books, musicalbums, genres)
+  def save(games, authors, books, _musicalbums, _genres)
     files = [
       { name: 'games', payload: games },
       { name: 'authors', payload: authors },

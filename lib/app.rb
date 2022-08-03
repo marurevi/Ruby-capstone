@@ -178,7 +178,7 @@ class App
       end
     end
   end
-  
+
   def list_genre
     if @genres.length.zero?
       puts 'No Genre registered yet!'
@@ -208,5 +208,4 @@ class App
     puts 'Music Album successfully added !'
     @musicalbums << musicalbum
   end
-
 end
