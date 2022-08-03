@@ -99,7 +99,9 @@ class App
   end
 
   def retrieve_objects
-    genre = [(print 'Genre: '), gets.rstrip][1]
+    inp_genre = [(print 'Genre: '), gets.rstrip][1]
+    genre = @genres.find { |g| g.name == inp_genre  }
+    genre = genre.nil? ? Genre.new(inp_genre) : genre
     inp_author_first = [(print 'Author first name: '), gets.rstrip][1]
     inp_author_last = [(print 'Author last name: '), gets.rstrip][1]
     author = @authors.find { |a| a.first_name == inp_author_first && a.last_name == inp_author_last }
@@ -196,12 +198,13 @@ class App
     genre, author, label = retrieve_objects
     published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
     year, month, day = published_date.split('-')
-    on_spotify = [(print 'Is this album on spotify (Type True or False): '), gets.rstrip][1]
+    on_spotify = [(print 'Is this album on spotify (Type True or False): '), gets.rstrip][1] == 'True'
     begin
-      musicalbum = MusicAlbum.new(Date.new(year.to_i, month.to_i, day.to_i), on_spotify)
+      musicalbum = MusicAlbum.new(Date.new(year.to_i, month.to_i, day.to_i), on_spotify: on_spotify)
       author.add_item(musicalbum)
       @authors << author unless @authors.include?(author)
-      musicalbum.genre = genre
+      genre.add_item(musicalbum)
+      @genres << genre unless @genres.include?(genre)
       musicalbum.label = label
     rescue StandardError
       puts 'Could not create musicalbum with provided info!'
