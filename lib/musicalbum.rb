@@ -12,7 +12,7 @@ class MusicAlbum < Item
     true if @on_spotify
   end
 
-  def to_s
-    "Music Album name: #{@label.title}\npublished date: #{@published_date}\nHosted on Spotify: #{@on_spotify}"
-  end
+  # def to_s
+  #   "Music Album name: #{@label.title}\npublished date: #{@published_date}\nHosted on Spotify: #{@on_spotify}"
+  # end
 end

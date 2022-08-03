@@ -13,7 +13,7 @@ class Genre
     item.add_genre(self)
   end
 
-  def to_s
-    "Name of Genre: #{@name}"
-  end
+  # def to_s
+  #   "Name of Genre: #{@name}"
+  # end
 end
