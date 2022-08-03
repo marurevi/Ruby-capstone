@@ -2,10 +2,11 @@
   "authors": [
     {
       "json_class": "Author",
-      "first_name": "d",
-      "last_name": "m",
-      "id": "ebcbd72a-c83b-4117-b61a-55a03e6ddf14",
+      "first_name": "Stephen",
+      "last_name": "King",
+      "id": "6c50c25a-274f-4800-b561-c996632e101e",
       "items": [
+        "9c04c6fd-2c62-47e3-9d70-b03b5ba87268",
         "060f31cb-0c55-44e1-834e-b8c1f1d9c527",
         "bbabd134-36b7-4306-bc4a-3b384236f57a",
         "a91d7151-b8a9-4920-aba0-7688f9df2622",
@@ -15,29 +16,23 @@
     },
     {
       "json_class": "Author",
-      "first_name": "m",
-      "last_name": "r",
-      "id": "2bdc460f-8743-42c8-afd6-4c657796aa6e",
+      "first_name": "John",
+      "last_name": "Katzcheback",
+      "id": "aa977517-96af-4f3d-b426-36aa605849ae",
       "items": [
-        "289d3073-42e7-483f-8827-9a9e5da35039"
-      ]
+        "289d3073-42e7-483f-8827-9a9e5da35039",
+        "f13739c7-519b-4344-8505-23556ca77750",
+        "289d3073-42e7-483f-8827-9a9e5da35039",
+        "f5890200-0ed6-4f34-a96f-8566a5352597"
+        ]
     },
     {
       "json_class": "Author",
-      "first_name": "tw",
-      "last_name": "ue",
-      "id": "d15f88d9-1bb6-40e4-86fb-789cfcac05ec",
+      "first_name": "sdfs",
+      "last_name": "dsfa",
+      "id": "07f426c7-99fc-43f7-9580-c42cdc94315e",
       "items": [
-        "6e27ffb1-c9a8-4409-8b45-3e8debfd5ce1"
-      ]
-    },
-    {
-      "json_class": "Author",
-      "first_name": "fe",
-      "last_name": "ds",
-      "id": "af096242-e987-4c73-9e87-09ac89e2cbce",
-      "items": [
-
+        "594f7d64-118f-4958-bc1a-a1a3a62b1a94"
       ]
     },
     {
@@ -82,7 +77,7 @@
       "last_name": "jackson",
       "id": "f754d8a3-8f84-40ae-bb80-2232cbbc7e04",
       "items": [
-
+        
       ]
     }
   ]
