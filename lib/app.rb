@@ -158,7 +158,7 @@ class App
       return
     end
     @books.each.with_index do |bk, i|
-      puts "#{i}) [Book] The #{bk.genre} book by #{bk.author.first_name} was released in #{bk.published_date.to_date}."
+      puts "#{i}) [Book] The #{bk.genre.name} book by #{bk.author.first_name} #{bk.inp_author_last} was released in #{bk.published_date.to_date}."
     end
   end
 
