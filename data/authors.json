@@ -4,7 +4,7 @@
       "json_class": "Author",
       "first_name": "Stephen",
       "last_name": "King",
-      "id": "6c50c25a-274f-4800-b561-c996632e101e",
+      "id": "18c766cd-7fae-4985-a03d-f7a4db1febaf",
       "items": [
         "9c04c6fd-2c62-47e3-9d70-b03b5ba87268",
         "060f31cb-0c55-44e1-834e-b8c1f1d9c527",
@@ -16,9 +16,9 @@
     },
     {
       "json_class": "Author",
-      "first_name": "John",
-      "last_name": "Katzcheback",
-      "id": "aa977517-96af-4f3d-b426-36aa605849ae",
+      "first_name": "Bruno",
+      "last_name": "Mars",
+      "id": "baa91860-5980-4b52-a43c-247aacddbc64",
       "items": [
         "289d3073-42e7-483f-8827-9a9e5da35039",
         "f13739c7-519b-4344-8505-23556ca77750",

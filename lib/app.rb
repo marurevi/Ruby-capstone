@@ -132,7 +132,8 @@ class App
       @authors << author unless @authors.include?(author)
       label.add_item(game)
       @labels << label unless @labels.include?(label)
-      game.genre = genre
+      genre.add_item(game)
+      @genres << genre unless @genres.include?(genre)
     rescue StandardError
       puts 'Could not create game with provided info!'
       return
@@ -157,7 +158,7 @@ class App
       return
     end
     @books.each.with_index do |bk, i|
-      puts "#{i}) [Book] The #{bk.genre} book by #{bk.author.first_name} was released in #{bk.published_date.to_date}."
+      puts "#{i}) [Book] The #{bk.genre.name} book by #{bk.author.first_name} #{bk.inp_author_last} was released in #{bk.published_date.to_date}."
     end
   end
 
@@ -165,14 +166,16 @@ class App
     genre, author, label = retrieve_objects
     published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
     year, month, day = published_date.split('-')
+    publisher = [(print 'Publisher: '), gets.rstrip][1]
     cover_state = [(print 'Cover state, (good or bad): '), gets.rstrip][1]
     begin
-      book = Book.new(Date.new(year.to_i, month.to_i, day.to_i), cover_state)
+      book = Book.new(Date.new(year.to_i, month.to_i, day.to_i), publisher, cover_state)
       author.add_item(book)
       @authors << author unless @authors.include?(author)
       label.add_item(book)
       @labels << label unless @labels.include?(label)
-      book.genre = genre
+      genre.add_item(book)
+      @genres << genre unless @genres.include?(genre)
     rescue StandardError
       puts 'Could not create book with provided info!'
       return
@@ -222,7 +225,8 @@ class App
       @authors << author unless @authors.include?(author)
       genre.add_item(musicalbum)
       @genres << genre unless @genres.include?(genre)
-      musicalbum.label = label
+      label.add_item(musicalbum)
+      @labels << label unless @labels.include?(label)
     rescue StandardError
       puts 'Could not create musicalbum with provided info!'
       return
