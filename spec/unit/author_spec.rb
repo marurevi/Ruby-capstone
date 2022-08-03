@@ -1,7 +1,7 @@
 require_relative '../../lib/author'
 require_relative '../../lib/item'
 
-fdescribe 'An author' do
+describe 'An author' do
   let(:author) { Author.new('first-name', 'last-name', 'the-author-id') }
   let(:item) { Item.new(Date.new(2011, 12, 25), 'the-item-id') }
 
