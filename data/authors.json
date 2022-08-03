@@ -6,7 +6,25 @@
       "last_name": "King",
       "id": "6c50c25a-274f-4800-b561-c996632e101e",
       "items": [
-        "84a7835e-d2c2-4cb4-9618-5388c5dbc06b"
+        "9c04c6fd-2c62-47e3-9d70-b03b5ba87268"
+      ]
+    },
+    {
+      "json_class": "Author",
+      "first_name": "John",
+      "last_name": "Katzcheback",
+      "id": "aa977517-96af-4f3d-b426-36aa605849ae",
+      "items": [
+        "f13739c7-519b-4344-8505-23556ca77750"
+      ]
+    },
+    {
+      "json_class": "Author",
+      "first_name": "sdfs",
+      "last_name": "dsfa",
+      "id": "07f426c7-99fc-43f7-9580-c42cdc94315e",
+      "items": [
+        "594f7d64-118f-4958-bc1a-a1a3a62b1a94"
       ]
     }
   ]

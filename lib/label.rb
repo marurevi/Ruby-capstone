@@ -19,8 +19,8 @@ class Label
   def to_json(*args)
     {
       JSON.create_id => self.class.name,
-      'title' => @first_name,
-      'color' => @last_name,
+      'title' => @title,
+      'color' => @color,
       'id' => @id,
       'items' => @items.map(&:id)
     }.to_json(*args)

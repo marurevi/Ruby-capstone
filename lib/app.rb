@@ -101,7 +101,9 @@ class App
     inp_author_last = [(print 'Author last name: '), gets.rstrip][1]
     author = @authors.find { |a| a.first_name == inp_author_first && a.last_name == inp_author_last }
     author = author.nil? ? Author.new(inp_author_first, inp_author_last) : author
-    label = [(print 'Label: '), gets.rstrip][1]
+    title = [(print 'Title: '), gets.rstrip][1]
+    color = [(print 'Color: '), gets.rstrip][1]
+    label = label.nil? ? Label.new(title, color) : label
     [genre, author, label]
   end
 
