@@ -3,6 +3,7 @@ require 'json'
 require_relative 'author'
 require_relative 'game'
 require_relative 'book'
+require_relative 'label'
 require_relative 'musicalbum'
 require_relative 'genre'
 require_relative 'loaders'
@@ -16,12 +17,14 @@ class App
 
   def initialize
     @authors = File.file?('data/authors.json') ? load('data/authors.json')['authors'] : []
+    @labels = File.file?('data/labels.json') ? load('data/labels.json')['labels'] : []
     @games = File.file?('data/games.json') ? load('data/games.json')['games'] : []
     @books = File.file?('data/books.json') ? load('data/books.json')['books'] : []
     @musicalbums = []
     @genres = []
     @items = [*@games, *@books]
     find_items(@authors)
+    find_items(@labels)
   end
 
   def call_input(first)
@@ -40,12 +43,13 @@ class App
   end
 
   def cases(command)
-    return unless %w[1 2 3 4 6 7 8 9].include? command
+    return unless %w[1 2 3 4 5 6 7 8 9].include? command
 
     { '1' => -> { list_books },
       '2' => -> { list_musicalbum },
       '3' => -> { list_games },
       '4' => -> { list_genre },
+      '5' => -> { list_labels },
       '6' => -> { list_authors },
       '7' => -> { add_book },
       '8' => -> { create_musicalbum },
@@ -61,11 +65,11 @@ class App
   def run
     puts 'Welcome, choose an option'
     command = action(true)
-    save(@games, @authors, @books, @musicalbums, @genres)
+    save(@games, @authors, @books, @labels, @musicalbums, @genres)
     while command != '10'
       puts ' '
       command = action(false)
-      save(@games, @authors, @books, @musicalbums, @genres)
+      save(@games, @authors, @books, @labels, @musicalbums, @genres)
     end
     puts ' '
     puts 'Leaving the catalogue... Goodbye!'
@@ -106,7 +110,10 @@ class App
     inp_author_last = [(print 'Author last name: '), gets.rstrip][1]
     author = @authors.find { |a| a.first_name == inp_author_first && a.last_name == inp_author_last }
     author = author.nil? ? Author.new(inp_author_first, inp_author_last) : author
-    label = [(print 'Label: '), gets.rstrip][1]
+    title = [(print 'Title: '), gets.rstrip][1]
+    color = [(print 'Color: '), gets.rstrip][1]
+    label = @labels.find { |lb| lb.title == title && lb.color == color }
+    label = label.nil? ? Label.new(title, color) : label
     [genre, author, label]
   end
 
@@ -122,8 +129,9 @@ class App
                       DateTime.new(year.to_i, month.to_i, day.to_i))
       author.add_item(game)
       @authors << author unless @authors.include?(author)
+      label.add_item(game)
+      @labels << label unless @labels.include?(label)
       game.genre = genre
-      game.label = label
     rescue StandardError
       puts 'Could not create game with provided info!'
       return
@@ -148,7 +156,7 @@ class App
       return
     end
     @books.each.with_index do |bk, i|
-      puts "#{i}) [Game] The #{bk.genre} book by #{bk.author.first_name} was released in #{bk.published_date.to_date}."
+      puts "#{i}) [Book] The #{bk.genre} book by #{bk.author.first_name} was released in #{bk.published_date.to_date}."
     end
   end
 
@@ -161,8 +169,9 @@ class App
       book = Book.new(Date.new(year.to_i, month.to_i, day.to_i), cover_state)
       author.add_item(book)
       @authors << author unless @authors.include?(author)
+      label.add_item(book)
+      @labels << label unless @labels.include?(label)
       book.genre = genre
-      book.label = label
     rescue StandardError
       puts 'Could not create book with provided info!'
       return
@@ -171,11 +180,20 @@ class App
     @books << book
   end
 
+  def list_labels
+    if @labels.empty?
+      puts 'There are no labels yet!'
+      return
+    end
+    @labels.each.with_index do |label, i|
+      puts "#{i}) [Label] The label correspond to #{label.title} whith color #{label.color}."
+    end
+  end
+
   def list_musicalbum
     if @musicalbums.length.zero?
       puts 'No Music Album added yet !'
     else
-
       @musicalbums.each_with_index do |album, index|
         puts "#{index + 1} Music Album :"
         puts album
@@ -187,7 +205,6 @@ class App
     if @genres.length.zero?
       puts 'No Genre registered yet!'
     else
-
       @genres.each_with_index do |genre, index|
         puts "#{index + 1}) Genre : #{genre}"
       end
