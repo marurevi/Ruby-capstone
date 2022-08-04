@@ -1,5 +1,12 @@
 {
   "games": [
-
+    {
+      "json_class": "Game",
+      "published_date": "0001-01-01",
+      "id": "98a2adb2-f4c6-42d0-98d6-0eb90648a84f",
+      "archived": false,
+      "multiplayer": "y",
+      "last_played_at": "0002-02-02"
+    }
   ]
 }

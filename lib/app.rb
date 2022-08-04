@@ -10,7 +10,7 @@ require_relative 'loaders'
 require_relative 'serializers'
 
 class App
-  attr_reader :games, :authors
+  attr_reader :games, :authors, :books, :labels, :musicalbums, :genres
 
   include Serializers
   include Loaders
@@ -46,12 +46,12 @@ class App
   def cases(command)
     return unless %w[1 2 3 4 5 6 7 8 9].include? command
 
-    { '1' => -> { list_books },
-      '2' => -> { list_musicalbum },
-      '3' => -> { list_games },
-      '4' => -> { list_genre },
-      '5' => -> { list_labels },
-      '6' => -> { list_authors },
+    { '1' => -> { list_item(@books) },
+      '2' => -> { list_item(@musicalbums) },
+      '3' => -> { list_item(@games) },
+      '4' => -> { list_item(@genres) },
+      '5' => -> { list_item(@labels) },
+      '6' => -> { list_item(@authors) },
       '7' => -> { add_item('book') },
       '8' => -> { add_item('music album') },
       '9' => -> { add_item('game') } }[command].call
@@ -93,13 +93,28 @@ class App
     end
   end
 
-  def list_games
-    if @games.empty?
-      puts 'There are no games yet!'
+  def list_item(items)
+    if items.empty?
+      puts `There are no items of that type yet!`
       return
     end
-    @games.each.with_index do |game, i|
-      puts "#{i}) [Game] The #{game.genre} game by #{game.author.first_name} was released in #{game.published_date.to_date}."
+    case items
+    when @books, @musicalbums, @games
+      items.each.with_index do |item, i|
+        puts "#{i}) [`#{item.class}`] The #{item.genre} #{item} by #{item.author} was released in #{item.published_date.to_date}."
+      end
+    when @authors
+      @authors.each.with_index do |author, i|
+        puts "#{i}) [Author] The author is #{author}."
+      end
+    when @labels
+      @labels.each.with_index do |label, i|
+        puts "#{i}) [Label] The label correspond to #{label.title} whith color #{label.color}."
+      end
+    when @genres
+      @genres.each_with_index do |genre, index|
+        puts "#{index + 1}) Genre : #{genre}"
+      end
     end
   end
 
@@ -116,56 +131,6 @@ class App
     label = @labels.find { |lb| lb.title == title && lb.color == color }
     label = label.nil? ? Label.new(title, color) : label
     [genre, author, label]
-  end
-
-  def list_authors
-    if @authors.empty?
-      puts 'There are no authors yet!'
-      return
-    end
-    @authors.each.with_index do |author, i|
-      puts "#{i}) [Author] The author is #{author}."
-    end
-  end
-
-  def list_books
-    if @books.empty?
-      puts 'There are no books yet!'
-      return
-    end
-    @books.each.with_index do |bk, i|
-      puts "#{i}) [Book] The #{bk.genre.name} book by #{bk.author.first_name} #{bk.inp_author_last} was released in #{bk.published_date.to_date}."
-    end
-  end
-
-  def list_labels
-    if @labels.empty?
-      puts 'There are no labels yet!'
-      return
-    end
-    @labels.each.with_index do |label, i|
-      puts "#{i}) [Label] The label correspond to #{label.title} whith color #{label.color}."
-    end
-  end
-
-  def list_musicalbum
-    if @musicalbums.length.zero?
-      puts 'No Music Album added yet !'
-    else
-      @musicalbums.each_with_index do |album, index|
-        puts "#{index + 1} Music Album : #{album.published_date.to_date}"
-      end
-    end
-  end
-
-  def list_genre
-    if @genres.length.zero?
-      puts 'No Genre registered yet!'
-    else
-      @genres.each_with_index do |genre, index|
-        puts "#{index + 1}) Genre : #{genre}"
-      end
-    end
   end
 
   def add_item_to_owner(item, owner, owners)
