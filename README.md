@@ -39,7 +39,7 @@ bundle install
 Open terminal and run ruby app in the command Line:
 
 ```
-ruby bin/main
+bin/main
 ```
 In case you want to run test, write the following command in your terminal:
 ```
