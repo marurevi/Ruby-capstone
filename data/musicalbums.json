@@ -2,17 +2,10 @@
   "musicalbums": [
     {
       "json_class": "MusicAlbum",
-      "published_date": "2020-11-12",
-      "id": "715a4a05-d5ef-47ad-af05-49e6eae2d700",
+      "published_date": "2017-02-15",
+      "id": "0d86930d-7dd7-4780-9ccf-08ddaa136ded",
       "archived": false,
       "on_spotify": true
-    },
-    {
-      "json_class": "MusicAlbum",
-      "published_date": "2019-03-15",
-      "id": "6aaf2a5d-ad1b-4d06-b333-017a0c0fa225",
-      "archived": false,
-      "on_spotify": false
     }
   ]
 }

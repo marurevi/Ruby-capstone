@@ -2,11 +2,11 @@
   "games": [
     {
       "json_class": "Game",
-      "published_date": "0001-01-01",
-      "id": "98a2adb2-f4c6-42d0-98d6-0eb90648a84f",
+      "published_date": "2013-09-20",
+      "id": "7a21e9ad-ca52-4aec-b7a4-e222253c42cb",
       "archived": false,
-      "multiplayer": "y",
-      "last_played_at": "0002-02-02"
+      "multiplayer": "Yes",
+      "last_played_at": "2020-12-02"
     }
   ]
 }
