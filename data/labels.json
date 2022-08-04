@@ -1,0 +1,40 @@
+{
+  "labels": [
+    {
+      "json_class": "Label",
+      "title": "Public Deaths",
+      "color": "Red",
+      "id": "f1792666-4c2f-4a6f-963f-c880074547ce",
+      "items": [
+        "2a53d2a0-a63a-4154-9025-68574ef16f7e"
+      ]
+    },
+    {
+      "json_class": "Label",
+      "title": "Revival",
+      "color": "Red",
+      "id": "98b23188-6ab3-4581-af86-f58835428ad1",
+      "items": [
+        "0d86930d-7dd7-4780-9ccf-08ddaa136ded"
+      ]
+    },
+    {
+      "json_class": "Label",
+      "title": "COD: Black Ops",
+      "color": "Orange",
+      "id": "49934c2a-b463-4e88-a51e-cc184fd5fd23",
+      "items": [
+        "7a21e9ad-ca52-4aec-b7a4-e222253c42cb"
+      ]
+    },
+    {
+      "json_class": "Label",
+      "title": "love",
+      "color": "blue",
+      "id": "73752cb7-2161-444e-8d37-e85b4f28922c",
+      "items": [
+        "01b0a115-789d-4d08-8e50-0c1598fc9590"
+      ]
+    }
+  ]
+}

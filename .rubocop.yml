@@ -8,16 +8,22 @@ AllCops:
   DisplayCopNames: true
 
 Layout/LineLength:
-  Max: 120
+  Max: 200
 Metrics/MethodLength:
-  Max: 20
+  Max: 40
 Metrics/AbcSize:
-  Max: 50
+  Max: 70
 Metrics/ClassLength:
-  Max: 150
+  Max: 250
 Metrics/BlockLength:
   IgnoredMethods: ["describe"]
-  Max: 30
+  Max: 50
+Metrics/PerceivedComplexity:
+  Max: 15
+Metrics/CyclomaticComplexity:
+  Max: 15
+Metrics/ParameterLists:
+  Max: 6
 
 Style/Documentation:
   Enabled: false

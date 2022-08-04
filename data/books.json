@@ -1,0 +1,12 @@
+{
+  "books": [
+    {
+      "json_class": "Book",
+      "published_date": "2010-09-06",
+      "publisher": "NY Times",
+      "id": "2a53d2a0-a63a-4154-9025-68574ef16f7e",
+      "archived": true,
+      "cover_state": "good"
+    }
+  ]
+}

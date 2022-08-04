@@ -1,0 +1,18 @@
+{
+  "musicalbums": [
+    {
+      "json_class": "MusicAlbum",
+      "published_date": "2017-02-15",
+      "id": "0d86930d-7dd7-4780-9ccf-08ddaa136ded",
+      "archived": false,
+      "on_spotify": true
+    },
+    {
+      "json_class": "MusicAlbum",
+      "published_date": "2020-12-12",
+      "id": "01b0a115-789d-4d08-8e50-0c1598fc9590",
+      "archived": false,
+      "on_spotify": true
+    }
+  ]
+}

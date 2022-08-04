@@ -1,0 +1,36 @@
+{
+  "genres": [
+    {
+      "json_class": "Genre",
+      "name": "thriller",
+      "id": "0416f6d5-9965-43b3-b29c-67d7e6321209",
+      "items": [
+        "2a53d2a0-a63a-4154-9025-68574ef16f7e"
+      ]
+    },
+    {
+      "json_class": "Genre",
+      "name": "Hip Hop",
+      "id": "3279348c-75e9-44fd-8ca2-fbd80dc4878b",
+      "items": [
+        "0d86930d-7dd7-4780-9ccf-08ddaa136ded"
+      ]
+    },
+    {
+      "json_class": "Genre",
+      "name": "FPS",
+      "id": "86b13505-95c8-43c4-ab0a-bf57b0afdcd6",
+      "items": [
+        "7a21e9ad-ca52-4aec-b7a4-e222253c42cb"
+      ]
+    },
+    {
+      "json_class": "Genre",
+      "name": "rnb",
+      "id": "8934b48e-08b9-42ba-9078-8a8d81b14327",
+      "items": [
+        "01b0a115-789d-4d08-8e50-0c1598fc9590"
+      ]
+    }
+  ]
+}
