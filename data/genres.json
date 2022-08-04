@@ -23,6 +23,14 @@
       "items": [
         "7a21e9ad-ca52-4aec-b7a4-e222253c42cb"
       ]
+    },
+    {
+      "json_class": "Genre",
+      "name": "rnb",
+      "id": "8934b48e-08b9-42ba-9078-8a8d81b14327",
+      "items": [
+        "01b0a115-789d-4d08-8e50-0c1598fc9590"
+      ]
     }
   ]
 }
