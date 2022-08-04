@@ -30,6 +30,7 @@ class App
 
   def call_input(first)
     puts "What would you like to do #{first ? 'first' : 'next'}? (1 - 10)"
+    puts ''
     puts '1 - List all books'
     puts '2 - List all music albums'
     puts '3 - List of games'
@@ -59,12 +60,15 @@ class App
 
   def action(first)
     command = call_input(first)
+    puts ''
     cases(command)
     command
   end
 
   def run
-    puts 'Welcome, choose an option'
+    puts '============================='
+    puts '  Welcome, choose an option  '
+    puts '============================='
     command = action(true)
     save(@games, @authors, @books, @labels, @musicalbums, @genres)
     while command != '10'
@@ -95,25 +99,26 @@ class App
 
   def list_item(items)
     if items.empty?
-      puts `There are no items of that type yet!,please add needed items`
+      puts `There are no items of that type yet!, please add needed items`
       return
     end
+    puts "Your catalog contains the following #{items[0].class}s:"
     case items
     when @books, @musicalbums, @games
       items.each.with_index do |item, i|
-        puts "#{i}) [`#{item.class}`] The #{item.genre.name} titled #{item.label.title} by #{item.author.first_name} #{item.author.last_name} was released in #{item.published_date.to_date}."
+        puts "#{i + 1}) [#{item.class}] The #{item.genre.name} titled #{item.label.title} by #{item.author.first_name} #{item.author.last_name} was released in #{item.published_date.to_date}."
       end
     when @authors
       @authors.each.with_index do |author, i|
-        puts "#{i}) [Author] The author is #{author.first_name} #{author.last_name}."
+        puts "#{i + 1}) [Author] #{author.first_name} #{author.last_name}"
       end
     when @labels
       @labels.each.with_index do |label, i|
-        puts "#{i}) [Label] The label corresponds to #{label.title} with color #{label.color}."
+        puts "#{i + 1}) [Label] Title: #{label.title} - Color: #{label.color}"
       end
     when @genres
-      @genres.each_with_index do |genre, index|
-        puts "#{index + 1}) Genre : #{genre.name}"
+      @genres.each_with_index do |genre, i|
+        puts "#{i + 1}) [Genre] #{genre.name}"
       end
     end
   end
