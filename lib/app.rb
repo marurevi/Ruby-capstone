@@ -10,7 +10,7 @@ require_relative 'loaders'
 require_relative 'serializers'
 
 class App
-  attr_reader :games, :authors
+  attr_reader :games, :authors, :books, :labels, :musicalbums, :genres
 
   include Serializers
   include Loaders
@@ -46,15 +46,15 @@ class App
   def cases(command)
     return unless %w[1 2 3 4 5 6 7 8 9].include? command
 
-    { '1' => -> { list_books },
-      '2' => -> { list_musicalbum },
-      '3' => -> { list_games },
-      '4' => -> { list_genre },
-      '5' => -> { list_labels },
-      '6' => -> { list_authors },
-      '7' => -> { add_book },
-      '8' => -> { create_musicalbum },
-      '9' => -> { add_game } }[command].call
+    { '1' => -> { list_item(@books) },
+      '2' => -> { list_item(@musicalbums) },
+      '3' => -> { list_item(@games) },
+      '4' => -> { list_item(@genres) },
+      '5' => -> { list_item(@labels) },
+      '6' => -> { list_item(@authors) },
+      '7' => -> { add_item('book') },
+      '8' => -> { add_item('music album') },
+      '9' => -> { add_item('game') } }[command].call
   end
 
   def action(first)
@@ -93,13 +93,28 @@ class App
     end
   end
 
-  def list_games
-    if @games.empty?
-      puts 'There are no games yet!'
+  def list_item(items)
+    if items.empty?
+      puts `There are no items of that type yet!`
       return
     end
-    @games.each.with_index do |game, i|
-      puts "#{i}) [Game] The #{game.genre} game by #{game.author.first_name} was released in #{game.published_date.to_date}."
+    case items
+    when @books, @musicalbums, @games
+      items.each.with_index do |item, i|
+        puts "#{i}) [`#{item.class}`] The #{item.genre} #{item} by #{item.author} was released in #{item.published_date.to_date}."
+      end
+    when @authors
+      @authors.each.with_index do |author, i|
+        puts "#{i}) [Author] The author is #{author}."
+      end
+    when @labels
+      @labels.each.with_index do |label, i|
+        puts "#{i}) [Label] The label correspond to #{label.title} whith color #{label.color}."
+      end
+    when @genres
+      @genres.each_with_index do |genre, index|
+        puts "#{index + 1}) Genre : #{genre}"
+      end
     end
   end
 
@@ -118,120 +133,42 @@ class App
     [genre, author, label]
   end
 
-  def add_game
+  def add_item_to_owner(item, owner, owners)
+    owner.add_item(item)
+    owners << owner unless owners.include?(owner)
+  end
+
+  def add_item(type)
     genre, author, label = retrieve_objects
-    published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
-    year, month, day = published_date.split('-')
-    multiplayer = [(print 'Multiplayer: '), gets.rstrip][1]
-    last_played_at = [(print 'Last played at (yyyy-mm-dd): '), gets.rstrip][1]
-    year1, month1, day1 = last_played_at.split('-')
+    inp_published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
+    year, month, day = inp_published_date.split('-')
+    published_date = Date.new(year.to_i, month.to_i, day.to_i)
     begin
-      game = Game.new(multiplayer, DateTime.new(year1.to_i, month1.to_i, day1.to_i),
-                      DateTime.new(year.to_i, month.to_i, day.to_i))
-      author.add_item(game)
-      @authors << author unless @authors.include?(author)
-      label.add_item(game)
-      @labels << label unless @labels.include?(label)
-      genre.add_item(game)
-      @genres << genre unless @genres.include?(genre)
-    rescue StandardError
-      puts 'Could not create game with provided info!'
-      return
-    end
-    puts 'Game created successfully!'
-    @games << game
-  end
-
-  def list_authors
-    if @authors.empty?
-      puts 'There are no authors yet!'
-      return
-    end
-    @authors.each.with_index do |author, i|
-      puts "#{i}) [Author] The author is #{author}."
-    end
-  end
-
-  def list_books
-    if @books.empty?
-      puts 'There are no books yet!'
-      return
-    end
-    @books.each.with_index do |bk, i|
-      puts "#{i}) [Book] The #{bk.genre.name} book by #{bk.author.first_name} #{bk.inp_author_last} was released in #{bk.published_date.to_date}."
-    end
-  end
-
-  def add_book
-    genre, author, label = retrieve_objects
-    published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
-    year, month, day = published_date.split('-')
-    publisher = [(print 'Publisher: '), gets.rstrip][1]
-    cover_state = [(print 'Cover state, (good or bad): '), gets.rstrip][1]
-    begin
-      book = Book.new(Date.new(year.to_i, month.to_i, day.to_i), publisher, cover_state)
-      author.add_item(book)
-      @authors << author unless @authors.include?(author)
-      label.add_item(book)
-      @labels << label unless @labels.include?(label)
-      genre.add_item(book)
-      @genres << genre unless @genres.include?(genre)
-    rescue StandardError
-      puts 'Could not create book with provided info!'
-      return
-    end
-    puts 'Book created successfully!'
-    @books << book
-  end
-
-  def list_labels
-    if @labels.empty?
-      puts 'There are no labels yet!'
-      return
-    end
-    @labels.each.with_index do |label, i|
-      puts "#{i}) [Label] The label correspond to #{label.title} whith color #{label.color}."
-    end
-  end
-
-  def list_musicalbum
-    if @musicalbums.length.zero?
-      puts 'No Music Album added yet !'
-    else
-      @musicalbums.each_with_index do |album, index|
-        puts "#{index + 1} Music Album : #{album.published_date.to_date}"
+      case type
+      when 'book'
+        list = @books
+        publisher = [(print 'Publisher: '), gets.rstrip][1]
+        cover_state = [(print 'Cover state, (good or bad): '), gets.rstrip][1]
+        item = Book.new(published_date, publisher, cover_state)
+      when 'music album'
+        list = @musicalbums
+        on_spotify = [(print 'Is this album on spotify (true or false): '), gets.rstrip.capitalize][1] == 'True'
+        item = MusicAlbum.new(published_date, on_spotify: on_spotify)
+      when 'game'
+        list = @games
+        multiplayer = [(print 'Multiplayer: '), gets.rstrip][1]
+        inp_last_played_at = [(print 'Last played at (yyyy-mm-dd): '), gets.rstrip][1]
+        year1, month1, day1 = inp_last_played_at.split('-')
+        last_played_at = Date.new(year1.to_i, month1.to_i, day1.to_i)
+        item = Game.new(multiplayer, last_played_at, published_date)
       end
-    end
-  end
-
-  def list_genre
-    if @genres.length.zero?
-      puts 'No Genre registered yet!'
-    else
-      @genres.each_with_index do |genre, index|
-        puts "#{index + 1}) Genre : #{genre}"
-      end
-    end
-  end
-
-  def create_musicalbum
-    genre, author, label = retrieve_objects
-    published_date = [(print 'Published date (yyyy-mm-dd): '), gets.rstrip][1]
-    year, month, day = published_date.split('-')
-    on_spotify = [(print 'Is this album on spotify (Type True or False): '), gets.rstrip][1] == 'True'
-    begin
-      musicalbum = MusicAlbum.new(Date.new(year.to_i, month.to_i, day.to_i), on_spotify: on_spotify)
-      author.add_item(musicalbum)
-      @authors << author unless @authors.include?(author)
-      genre.add_item(musicalbum)
-      @genres << genre unless @genres.include?(genre)
-      label.add_item(musicalbum)
-      @labels << label unless @labels.include?(label)
+      add_item_to_owner(item, label, @labels)
+      add_item_to_owner(item, genre, @genres)
+      add_item_to_owner(item, author, @authors)
+      puts "#{type.capitalize} created successfully!"
+      list << item
     rescue StandardError
-      puts 'Could not create musicalbum with provided info!'
-      return
+      puts "Could not create #{type} with provided info!"
     end
-    puts 'Music Album successfully added !'
-    @musicalbums << musicalbum
   end
 end

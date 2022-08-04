@@ -2,11 +2,11 @@
   "books": [
     {
       "json_class": "Book",
-      "published_date": "0001-01-01",
-      "publisher": "Atenea",
-      "id": "803b396b-08b9-47e1-b1ec-ea7455d4590f",
+      "published_date": "2010-09-06",
+      "publisher": "NY Times",
+      "id": "2a53d2a0-a63a-4154-9025-68574ef16f7e",
       "archived": true,
-      "cover_state": "bad"
+      "cover_state": "good"
     }
   ]
 }
