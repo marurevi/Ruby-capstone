@@ -80,6 +80,15 @@
       "items": [
         "6aaf2a5d-ad1b-4d06-b333-017a0c0fa225"
       ]
+    },
+    {
+      "json_class": "Author",
+      "first_name": "b",
+      "last_name": "c",
+      "id": "c4b15048-0f00-4be7-9704-8a81c3485b85",
+      "items": [
+        "98a2adb2-f4c6-42d0-98d6-0eb90648a84f"
+      ]
     }
   ]
 }

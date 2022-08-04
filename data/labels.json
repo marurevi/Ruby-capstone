@@ -17,6 +17,15 @@
       "items": [
 
       ]
+    },
+    {
+      "json_class": "Label",
+      "title": "d",
+      "color": "e",
+      "id": "af75b68c-8fcd-4cfb-a18d-f33e2e905445",
+      "items": [
+        "98a2adb2-f4c6-42d0-98d6-0eb90648a84f"
+      ]
     }
   ]
 }

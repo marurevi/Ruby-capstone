@@ -15,6 +15,14 @@
       "items": [
         "6aaf2a5d-ad1b-4d06-b333-017a0c0fa225"
       ]
+    },
+    {
+      "json_class": "Genre",
+      "name": "a",
+      "id": "5f4765e2-75ae-4cad-a2e9-cef75cf8dc46",
+      "items": [
+        "98a2adb2-f4c6-42d0-98d6-0eb90648a84f"
+      ]
     }
   ]
 }
