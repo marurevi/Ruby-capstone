@@ -73,7 +73,7 @@ class App
       save(@games, @authors, @books, @labels, @musicalbums, @genres)
     end
     puts ' '
-    puts 'Leaving the catalogue... Goodbye!'
+    puts ' Thank you for using this catalogue... Goodbye!'
   end
 
   private
@@ -95,25 +95,25 @@ class App
 
   def list_item(items)
     if items.empty?
-      puts `There are no items of that type yet!`
+      puts `There are no items of that type yet!,please add needed items`
       return
     end
     case items
     when @books, @musicalbums, @games
       items.each.with_index do |item, i|
-        puts "#{i}) [`#{item.class}`] The #{item.genre} #{item} by #{item.author} was released in #{item.published_date.to_date}."
+        puts "#{i}) [`#{item.class}`] The #{item.genre.name} titled #{item.label.title} by #{item.author.first_name} #{item.author.last_name} was released in #{item.published_date.to_date}."
       end
     when @authors
       @authors.each.with_index do |author, i|
-        puts "#{i}) [Author] The author is #{author}."
+        puts "#{i}) [Author] The author is #{author.first_name} #{author.last_name}."
       end
     when @labels
       @labels.each.with_index do |label, i|
-        puts "#{i}) [Label] The label correspond to #{label.title} whith color #{label.color}."
+        puts "#{i}) [Label] The label corresponds to #{label.title} with color #{label.color}."
       end
     when @genres
       @genres.each_with_index do |genre, index|
-        puts "#{index + 1}) Genre : #{genre}"
+        puts "#{index + 1}) Genre : #{genre.name}"
       end
     end
   end
@@ -165,10 +165,10 @@ class App
       add_item_to_owner(item, label, @labels)
       add_item_to_owner(item, genre, @genres)
       add_item_to_owner(item, author, @authors)
-      puts "#{type.capitalize} created successfully!"
+      puts "#{type.capitalize} added successfully!"
       list << item
     rescue StandardError
-      puts "Could not create #{type} with provided info!"
+      puts "Could not add #{type} with the provided info!"
     end
   end
 end

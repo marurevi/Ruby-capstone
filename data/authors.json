@@ -26,6 +26,15 @@
       "items": [
         "7a21e9ad-ca52-4aec-b7a4-e222253c42cb"
       ]
+    },
+    {
+      "json_class": "Author",
+      "first_name": "as",
+      "last_name": "se",
+      "id": "a8a71792-90eb-4d6a-a5cf-d177bba01d03",
+      "items": [
+        "01b0a115-789d-4d08-8e50-0c1598fc9590"
+      ]
     }
   ]
 }
